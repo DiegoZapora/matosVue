@@ -2,7 +2,7 @@
     <form class="InpCad">
         <label :for="for">{{ nome }}</label>
         <input :type="type" :placeholder="placeholder">
-        <button :type="tipo">{{ texto }}</button>
+        <button :type="tipo" @click="submitForm">{{ texto }}</button>
     </form>
 </template>
 
@@ -16,14 +16,19 @@ export default {
         placeholder: String,
         tipo: String,
         texto: String
+    },
+    methods: {
+        submitForm(e) {
+            e.preventDefault()
+        }
     }
 }
 </script>
 
 <style>
- .InpCad{
+.InpCad {
     display: flex;
     flex-direction: column;
     width: 50%;
- }
+}
 </style>

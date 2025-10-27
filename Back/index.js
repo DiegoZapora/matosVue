@@ -5,6 +5,7 @@ import cors from "cors"
 import session from "express-session"
 
 // Models
+import { Paes } from "./Models/Ingredientes/Paes"
 
 // Configurações
 const app = express()
@@ -24,8 +25,16 @@ mongoose.connect("mongodb://localhost/makedb")
 })
 
 // Rotas
-
-
+app.post("/cadastrar/pao", async (req, res) => {
+    try {
+        const pao = new Paes(req.body)
+        const paoSalvo = await pao.save()
+        res.status(201).json(paoSalvo)
+    } catch (err) {
+        console.log(err)
+        res.status(400)
+    }
+})
 
 // Iniciar o servidor
 app.listen(8085, () => {

@@ -10,6 +10,6 @@ import InputCad from '@/components/InputCad.vue';
 export default {
     components: {
         InputCad
-    }
+    },
 }
 </script>
