@@ -5,7 +5,7 @@ import cors from "cors"
 import session from "express-session"
 
 // Models
-import { Paes } from "./Models/Ingredientes/Paes"
+import {Paes} from "./Models/Ingredientes/Paes.js"
 
 // Configurações
 const app = express()
