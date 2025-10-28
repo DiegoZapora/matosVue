@@ -12,7 +12,7 @@ export default {
 
 <style>
 .banner {
-    background-image: url("../../public/banner.png");
+    background-image: url("/banner.png");
     background-size: cover;
     background-position: 0;
     display: flex;

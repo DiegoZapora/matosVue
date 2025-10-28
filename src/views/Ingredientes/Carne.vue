@@ -1,8 +1,7 @@
 <template>
-    <div>
-        <InputCad for="carne" nome="Tipo da Carne: " type="text" placeholder="Digite o nome da Carne" tipo="submit" texto="Cadastrar"/>
-
-    </div>
+    <form>
+        <InputCad forText="carne" texto="Tipo da Carne: " tipo="text" placeholder="Digite o nome da Carne"/>
+    </form>
 </template>
 
 <script>

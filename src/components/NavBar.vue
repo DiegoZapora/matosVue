@@ -36,10 +36,11 @@ export default {
 }
 
 .naviga {
-    width: 50%;
+    width: auto;
     display: flex;
     justify-content: space-around;
     list-style: none;
+    margin-right: 10px;
 }
 
 .navLink {
@@ -47,6 +48,7 @@ export default {
     padding: 5px;
     border-radius: 4px;
     transition: .5s;
+    margin: 10px;
 }
 
 .navLink a{
@@ -65,15 +67,9 @@ export default {
     margin-left: 5px;
 }
 
-@media screen and (min-width: 800px) {
-    .naviga {
-        width: 25%;
-    }
-}
-
-@media screen and (min-width: 1100px) {
-    .naviga {
-        width: 20%;
-    }
+.logoImg:hover {
+    scale: 1.1;
+    transition: 1.8s;
+    transform: rotateX(360deg);
 }
 </style>

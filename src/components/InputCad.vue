@@ -1,34 +1,41 @@
 <template>
-    <form class="InpCad">
-        <label :for="for">{{ nome }}</label>
-        <input :type="type" :placeholder="placeholder">
-        <button :type="tipo" @click="submitForm">{{ texto }}</button>
-    </form>
+    <div class="inputControl">
+        <label :for="forText">{{ texto }}</label>
+        <input :type="tipo" :placeholder="placeholderF" :id="idF" :name="nameF">
+    </div>
 </template>
 
 <script>
 export default {
     name: "InputCad",
     props: {
-        for: String,
-        nome: String,
-        type: String,
-        placeholder: String,
+        forText: String,
+        texto: String,
         tipo: String,
-        texto: String
-    },
-    methods: {
-        submitForm(e) {
-            e.preventDefault()
-        }
+        placeholderF: String,
+        idF: String,
+        nameF: String
     }
 }
 </script>
 
-<style>
-.InpCad {
+<style scoped>
+.inputControl {
     display: flex;
     flex-direction: column;
-    width: 50%;
+}
+
+.inputControl input {
+    width: 300px;
+    margin-bottom: 10px;
+    padding: 5px;
+}
+
+.inputControl label {
+    font-weight: bold;
+    margin-bottom: 15px;
+    padding-left: 5px;
+    color: #222;
+    border-left: 4px solid #FCBA03;
 }
 </style>

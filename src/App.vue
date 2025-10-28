@@ -13,7 +13,7 @@ export default {
   },
   data() {
     return {
-      logo_src: "../public/300.png",
+      logo_src: "/300.png",
       app_name: "Matos Burguer"
     }
   }
