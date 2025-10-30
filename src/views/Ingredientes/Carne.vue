@@ -38,6 +38,7 @@ export default {
                 }
 
                 this.carne = ""
+                this.$router.push("/ingredientes")
             } catch (err) {
                 console.error(err)
             }

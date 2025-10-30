@@ -40,6 +40,7 @@ export default {
                 }
 
                 this.pao = ""
+                this.$router.push("/ingredientes")
             } catch (err) {
                 console.error("Erro no mandarPao: ", err)
             }

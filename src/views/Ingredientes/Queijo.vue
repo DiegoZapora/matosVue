@@ -38,6 +38,7 @@ export default {
                 }
 
                 this.queijo = ""
+                this.$router.push("/ingredientes")
             } catch(err) {
                 console.error(err)
             }

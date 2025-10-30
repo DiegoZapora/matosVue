@@ -27,7 +27,7 @@ export default {
 }
 
 .inputControl input {
-    width: 100%;
+    width: 300px;
     margin-bottom: 10px;
     padding: 5px;
 }

@@ -4,6 +4,7 @@ import mongoose from "mongoose"
 import cors from "cors"
 import session from "express-session"
 
+
 // Models
 import {Paes} from "./Models/Ingredientes/Paes.js"
 import { Carnes } from "./Models/Ingredientes/Carnes.js"
@@ -60,8 +61,16 @@ app.post("/cadastrar/queijo", async (req, res) => {
     }
 })
 
-app.get("/ingredientes", async (req, res) => {
+app.get("/ingredientes/todos", async (req, res) => {
+    try {
+        const paes = await Paes.find()
+        const carnes = await Carnes.find()
+        const queijos = await Queijo.find()
 
+        res.json({ paes, carnes, queijos })
+    }catch(err) {
+        console.error(err)
+    }
 })
 
 // Iniciar o servidor

@@ -58,7 +58,7 @@ export default {
         }*/
     },
     mounted() {
-        this.getIngredientes()
+        /*this.getIngredientes()*/
     }
 }
 </script>
