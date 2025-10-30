@@ -1,15 +1,60 @@
 <template>
-    <div>
-        <InputCad for="Pao" nome="Tipo do Pão:" type="text" placeholder="Digite o Tipo do Pão" tipo="submit" texto="Cadastrar" />
-    </div>
+    <form class="paoControl" @submit.prevent="mandarPao()">
+
+        <InputCad for-text="pao" texto="Cadastrar Pão" tipo="text" placeholder-f="Digite o Nome do Pão" id-f="pao"
+            name-f="pao" v-model="pao" />
+
+        <SubmitBtn btn-text="Cadastrar Pão" />
+    </form>
 </template>
 
 <script>
 import InputCad from '@/components/InputCad.vue';
+import SubmitBtn from '@/components/SubmitBtn.vue';
 
 export default {
     components: {
-        InputCad
+        InputCad,
+        SubmitBtn
     },
+    data() {
+        return {
+            pao: ""
+        }
+    },
+    methods: {
+        async mandarPao() {
+            const novoPao = {
+                tipoPao: this.pao
+            }
+
+            try {
+                const res = await fetch("http://localhost:8085/cadastrar/pao", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(novoPao)
+                })
+
+                if (!res.ok) {
+                    throw new Error("Erro ao Cadastrar Pão");
+                }
+
+                this.pao = ""
+            } catch (err) {
+                console.error("Erro no mandarPao: ", err)
+            }
+        }
+    }
 }
 </script>
+
+<style scoped>
+.paoControl {
+    width: 100%;
+    height: 70vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+</style>

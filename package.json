@@ -10,7 +10,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "backend": "nodemon ./Back/index.js"
+    "backend": "nodemon ./Back/back.js"
   },
   "dependencies": {
     "cors": "^2.8.5",

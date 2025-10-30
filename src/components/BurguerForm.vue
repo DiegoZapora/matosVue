@@ -35,11 +35,30 @@ export default {
     },
     data() {
         return {
-            nome: "",
-            pao: "",
-            carne: "",
-            queijo: ""
+            paoBack: null,
+            carnesBack: null,
+            queijosBack: null,
+            nome: null,
+            pao: null,
+            carne: null,
+            queijo: null,
+            msg: null,
+            status: null
         }
+    },
+
+    methods: {
+        /*async getIngredientes () {
+            const res = await fetch("http://localhost:8085")
+            const data = await res.json()
+
+            this.paoBack = data.paes
+            this.carnesBack = data.carne
+            this.queijosBack = data.queijo
+        }*/
+    },
+    mounted() {
+        this.getIngredientes()
     }
 }
 </script>

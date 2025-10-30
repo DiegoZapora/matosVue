@@ -1,6 +1,6 @@
 <template>
     <div class="btnControl">
-        <input type="submit" :value="btnText" @click="submitForm">
+        <input type="submit" :value="btnText">
     </div>
 </template>
 
@@ -9,11 +9,6 @@ export default {
     name: "SubmitBtn",
     props: {
         btnText: String
-    },
-    methods: {
-        submitForm(e) {
-            e.preventDefault()
-        }
     }
 }
 </script>

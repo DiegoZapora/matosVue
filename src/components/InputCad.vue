@@ -1,7 +1,7 @@
 <template>
     <div class="inputControl">
         <label :for="forText">{{ texto }}</label>
-        <input :type="tipo" :placeholder="placeholderF" :id="idF" :name="nameF">
+        <input :type="tipo" :placeholder="placeholderF" :id="idF" :name="nameF" :value="modelValue" @input="$emit('update:modelValue', $event.target.value)">
     </div>
 </template>
 
@@ -14,7 +14,8 @@ export default {
         tipo: String,
         placeholderF: String,
         idF: String,
-        nameF: String
+        nameF: String,
+        modelValue: String
     }
 }
 </script>
@@ -26,7 +27,7 @@ export default {
 }
 
 .inputControl input {
-    width: 300px;
+    width: 100%;
     margin-bottom: 10px;
     padding: 5px;
 }
