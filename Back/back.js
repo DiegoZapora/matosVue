@@ -9,6 +9,8 @@ import session from "express-session"
 import {Paes} from "./Models/Ingredientes/Paes.js"
 import { Carnes } from "./Models/Ingredientes/Carnes.js"
 import { Queijo } from "./Models/Ingredientes/Queijo.js"
+import { Burguers } from "./Models/Ingredientes/Ingredientes.js"
+import { Adicional } from "./Models/Ingredientes/Adicionais.js"
 
 // Configurações
 const app = express()
@@ -61,14 +63,35 @@ app.post("/cadastrar/queijo", async (req, res) => {
     }
 })
 
+app.post("/cadastrar/adicional", async (req, res) => {
+    try {
+        const novoAdicional = new Adicional(req.body)
+        const adicionalSavo = await novoAdicional.save()
+        res.json(adicionalSavo)
+    } catch (err) {
+        console.error(err)
+    }
+})
+
 app.get("/ingredientes/todos", async (req, res) => {
     try {
         const paes = await Paes.find()
         const carnes = await Carnes.find()
         const queijos = await Queijo.find()
+        const adicional = await Adicional.find()
 
-        res.json({ paes, carnes, queijos })
+        res.json({ paes, carnes, queijos, adicional })
     }catch(err) {
+        console.error(err)
+    }
+})
+
+app.post("/burguers", async (req, res) => {
+    try {
+        const novoBurguer = new Burguers(req.body)
+        const burguerSavo = await novoBurguer.save()
+        res.json(burguerSavo)
+    } catch(err) {
         console.error(err)
     }
 })

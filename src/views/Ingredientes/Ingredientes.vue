@@ -13,9 +13,13 @@
     <hr>
     <p>Carnes: </p>
     <ul v-for="carne in carnes" :key="carne._id">
-        {{ carne.nomeCarne }}
+        <li>{{ carne.nomeCarne }}</li>
     </ul>
     <hr>
+    <p>Adicionais: </p>
+    <ul v-for="adicional in adicionais" :key="adicional._id">
+        <li>{{ adicional.nome }}</li>
+    </ul>
 
     <button>
         <RouterLink to="/cadastrar">Casdastrar Ingredientes</RouterLink>
@@ -28,7 +32,8 @@ export default {
         return {
             paes: "",
             carnes: "",
-            queijos: ""
+            queijos: "",
+            adicionais: ""
         }
     },
     methods: {
@@ -40,6 +45,7 @@ export default {
                 this.paes = data.paes
                 this.carnes = data.carnes
                 this.queijos = data.queijos
+                this.adicionais = data.adicional
             } catch (err) {
                 console.log(err)
             }

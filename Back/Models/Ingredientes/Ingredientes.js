@@ -1,21 +1,22 @@
 import mongoose from "mongoose";
 const Schema = mongoose.Schema
 
-const IngredientesSchema = new Schema({
+const BurguerSchema = new Schema({
+    nome: {
+        type: String,
+        require: true
+    },
     Paes: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Paes"
+        type: String,
     },
     Carnes: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Carnes"
+        type: String,
     },
     Queijo: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Queijo"
+        type: String,
     }
 })
 
-const Ingredientes = mongoose.model("Ingredientes", IngredientesSchema)
+const Burguers = mongoose.model("Burguers", BurguerSchema)
 
-export {Ingredientes}
+export {Burguers}

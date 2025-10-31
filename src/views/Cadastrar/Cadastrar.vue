@@ -6,6 +6,7 @@
             <li class="cadLI"><RouterLink to="/cadastrar/pao">Pão</RouterLink></li>
             <li class="cadLI"><RouterLink to="/cadastrar/queijo">Queijo</RouterLink></li>
             <li class="cadLI"><RouterLink to="/cadastrar/carne">Carne</RouterLink></li>
+            <li class="cadLI"><RouterLink to="/cadastrar/adicionais">Adicionais</RouterLink></li>
         </ul>
     </div>
 </template>
@@ -27,10 +28,11 @@
 .cadUl {
     display: flex;
     flex-direction: column;
-    height: 150px;
+    height: 200px;
     align-items: center;
     justify-content: space-between;
     list-style: none;
+    margin-top: 25px;
 }
 
 .cadLI a {

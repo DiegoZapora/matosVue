@@ -2,8 +2,8 @@
     <div class="selectControl">
         <label :for="forS">{{ textoS }}</label>
         <select :name="nameS" :id="idS">
-            <option value="">{{ selectTxt }}</option>
-            <option :value="valueS">{{ valueTxt }}</option>
+            <option value="0">{{ selectTxt }}</option>
+            <option></option>
         </select>
     </div>
 </template>
@@ -24,23 +24,5 @@ export default {
 </script>
 
 <style scoped>
-.selectControl {
-    display: flex;
-    flex-direction: column;
-}
 
-.selectControl select {
-    width: 300px;
-    margin-bottom: 10px;
-    padding: 5px;
-    cursor: pointer;
-}
-
-.selectControl label {
-    font-weight: bold;
-    margin-bottom: 15px;
-    padding-left: 5px;
-    color: #222;
-    border-left: 4px solid #FCBA03;
-}
 </style>
