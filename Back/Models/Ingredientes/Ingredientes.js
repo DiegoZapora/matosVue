@@ -14,6 +14,9 @@ const BurguerSchema = new Schema({
     },
     Queijo: {
         type: String,
+    },
+    Adicional: {
+        type: Array
     }
 })
 

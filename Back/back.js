@@ -11,6 +11,7 @@ import { Carnes } from "./Models/Ingredientes/Carnes.js"
 import { Queijo } from "./Models/Ingredientes/Queijo.js"
 import { Burguers } from "./Models/Ingredientes/Ingredientes.js"
 import { Adicional } from "./Models/Ingredientes/Adicionais.js"
+import { Status } from "./Models/Status/Status.js"
 
 // Configurações
 const app = express()
@@ -79,8 +80,9 @@ app.get("/ingredientes/todos", async (req, res) => {
         const carnes = await Carnes.find()
         const queijos = await Queijo.find()
         const adicional = await Adicional.find()
+        const status = await Status.find()
 
-        res.json({ paes, carnes, queijos, adicional })
+        res.json({ paes, carnes, queijos, adicional, status })
     }catch(err) {
         console.error(err)
     }
