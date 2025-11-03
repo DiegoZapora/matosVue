@@ -28,15 +28,17 @@ export default {
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
-.mainContainer {
-  margin: 50px;
-  min-height: 250px;
-}
-
 h1 {
   text-align: center;
   font-size: 42px;
   margin-bottom: 30px;
   color: #222;
+}
+</style>
+
+<style scoped>
+* {
+  width: 100vw;
+  height: 80vh;
 }
 </style>

@@ -1,72 +1,91 @@
 <template>
-    <div class="burguerTable">
-        <div>
-            <ul class="tableHeading">
-                <li class="orderId">#</li>
-                <li>Cliente: </li>
-                <li>Pão: </li>
-                <li>Carne: </li>
-                <li>Queijo: </li>
-                <li>Adicionais: </li>
-                <li>Ações: </li>
-            </ul>
-        </div>
+    <div class="burguerContainer">
         <div class="burguerRows">
-            <ul class="burguerRow">
-                <li class="orderNumber">1</li>
-                <li>Samp</li>
-                <li>Pao</li>
-                <li>Carne</li>
-                <li>Queijo</li>
+            <section v-for="burguer in burguers" :key="burguer._id">
+                <span>{{ burguer.nome }}</span>
+                <span>{{ burguer.Paes }}</span>
+                <span></span>
+                <span></span>
+                <span>Adicionais: </span>
                 <ul>
                     <li>Salame</li>
-                    <li>Tomate</li>
+                    <li>sas</li>
                 </ul>
-                <select name="status" class="status">
-                    <option value="">Status</option>
-                </select>
-                <button class="deleteBtn">Cancelar Pedido</button>
-            </ul>
+                <span class="sas"></span>
+                <div class="acoesBurguer">
+                    <select name="status" id="status">
+                        <option value="">Status Pedido</option>
+                    </select>
+                    <button class="btnCancelar">Cancelar Pedido</button>
+                </div>
+            </section>
         </div>
     </div>
 </template>
 
 <script>
 export default {
-    name: "Dashboard"
+    name: "Dashboard",
+    data() {
+        return {
+            burguers: null,
+            status: []
+        }
+    },
+    methods: {
+        async getBurguers() {
+            try {
+                const res = await fetch("http://localhost:8085/burguers")
+                const data = res.json()
+
+                this.burguers = data;
+
+                console.log(this.burguers)
+
+            }catch(err) {
+                console.log(err)
+            }
+        }
+    },
+    mounted() {
+        this.getBurguers()
+    }
 }
 </script>
 
 <style scoped>
- .burguerTable {
-    max-width: 1200px;
-    margin: 0 auto;
- }
-
- .tableHeading, .burguerRows, .burguerRow {
-    list-style: none;
-    display: flex;
-    flex-wrap: wrap;
- }
-
- .tableHeading {
-    font-weight: bold;
-    padding: 12px;
-    border-bottom: 3px solid #333;
- }
-
- .tableHeading li, .burguerRow li {
-    width: 19%;
- }
-
- .burguerRow {
+.burguerContainer {
     width: 100%;
-    padding: 12px;
-    border-bottom: 1px solid #ccc;
- }
+    height: 60vh;
+    max-height: 100vh;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: flex-start;
+}
 
- .burguerTable .orderId, .burguerRow .orderNumber {
-    width: 5%;
- }
+.burguerRows {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    border: 3px solid #ccc;
+    padding: 10px;
+    border-radius: 10px;
+}
 
+.burguerRows ul {
+    list-style: inside;
+}
+
+.acoesBurguer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.sas {
+    border: 4px solid black;
+    border-radius: 3px;
+    margin-bottom: 5px;
+}
 </style>

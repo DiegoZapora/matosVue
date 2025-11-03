@@ -98,6 +98,15 @@ app.post("/burguers", async (req, res) => {
     }
 })
 
+app.get("/burguers", async (req, res) => {
+    try {
+        const burguers = await Burguers.find()
+        res.json(burguers)
+    } catch(err) {
+        console.log(err)
+    }
+})
+
 // Iniciar o servidor
 app.listen(8085, () => {
     console.log("Estamos rodando!")
