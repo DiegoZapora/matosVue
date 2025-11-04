@@ -98,6 +98,15 @@ app.post("/burguers", async (req, res) => {
     }
 })
 
+app.get("/status", async (req, res) => {
+    try {
+        const status = await Status.find()
+        res.json(status)
+    }catch(err) {
+        console.log(err)
+    }
+})
+
 app.get("/burguers", async (req, res) => {
     try {
         const burguers = await Burguers.find()

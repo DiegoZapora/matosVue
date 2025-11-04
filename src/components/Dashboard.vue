@@ -1,24 +1,21 @@
 <template>
     <div class="burguerContainer">
-        <div class="burguerRows">
-            <section v-for="burguer in burguers" :key="burguer._id">
-                <span>{{ burguer.nome }}</span>
-                <span>{{ burguer.Paes }}</span>
-                <span></span>
-                <span></span>
-                <span>Adicionais: </span>
-                <ul>
-                    <li>Salame</li>
-                    <li>sas</li>
-                </ul>
-                <span class="sas"></span>
-                <div class="acoesBurguer">
-                    <select name="status" id="status">
-                        <option value="">Status Pedido</option>
-                    </select>
-                    <button class="btnCancelar">Cancelar Pedido</button>
-                </div>
-            </section>
+        <div class="burguerRows" v-for="burguer in burguers">
+            <span>Nome: {{ burguer.nome }}</span>
+            <span>Pão: {{ burguer.Paes }}</span>
+            <span>Carne: {{ burguer.Carnes }}</span>
+            <span>Queijo: {{ burguer.Queijo }}</span>
+            <span>Adicionais: </span>
+            <ul v-for="adicional in burguer.Adicional">
+                <li>{{ adicional }}</li>
+            </ul>
+            <span class="sas"></span>
+            <div class="acoesBurguer">
+                <select name="status" id="status">
+                    <option value="">Status Pedido</option>
+                </select>
+                <button class="btnCancelar">Cancelar Pedido</button>
+            </div>
         </div>
     </div>
 </template>
@@ -36,16 +33,14 @@ export default {
         async getBurguers() {
             try {
                 const res = await fetch("http://localhost:8085/burguers")
-                const data = res.json()
+                const data = await res.json()
 
                 this.burguers = data;
 
-                console.log(this.burguers)
-
-            }catch(err) {
+            } catch (err) {
                 console.log(err)
             }
-        }
+        },
     },
     mounted() {
         this.getBurguers()
@@ -72,6 +67,7 @@ export default {
     border: 3px solid #ccc;
     padding: 10px;
     border-radius: 10px;
+    margin-bottom: 10px;
 }
 
 .burguerRows ul {
