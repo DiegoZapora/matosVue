@@ -1,5 +1,6 @@
 <template>
     <div class="burguerContainer">
+        <Msg :mensagem="msg" v-if="msg"/>
         <div class="burguerRows" v-for="burguer in burguers">
             <span>Nome: {{ burguer.nome }}</span>
             <span>Pão: {{ burguer.Paes }}</span>
@@ -11,23 +12,41 @@
             </ul>
             <span class="sas"></span>
             <div class="acoesBurguer">
-                <select name="status" id="status">
-                    <option value="">Status Pedido</option>
+                <select name="status">
+                    <option :value="status.id" v-for="status in status" :key="status.id">{{ status.texto }}</option>
                 </select>
-                <button class="btnCancelar">Cancelar Pedido</button>
+                <button class="btnCancelar" @click="deleteBurguer(burguer._id)">Cancelar Pedido</button>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+import Msg from './Msg.vue';
 export default {
     name: "Dashboard",
     data() {
         return {
             burguers: null,
-            status: []
+            status: [
+                {
+                    "id": 1,
+                    "texto": "Solitado"
+                },
+                {
+                    "id": 2,
+                    "texto": "Em Producão"
+                },
+                {
+                    "id": 3,
+                    "texto": "Finalizado"
+                }
+            ],
+            msg: null
         }
+    },
+    components: {
+        Msg
     },
     methods: {
         async getBurguers() {
@@ -41,6 +60,20 @@ export default {
                 console.log(err)
             }
         },
+
+        async deleteBurguer(id) {
+            try {
+                const res = await fetch(`http://localhost:8085/burguers/${id}`, {
+                    method: "DELETE"
+                })
+
+                this.burguers = this.burguers.filter(burguer => burguer._id !== id)
+
+                this.msg = "Pedido deletado com sucesso!"
+            } catch(err) {
+                console.log(err)
+            }
+        }
     },
     mounted() {
         this.getBurguers()

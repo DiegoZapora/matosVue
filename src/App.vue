@@ -1,5 +1,6 @@
 <template>
   <NavBar :logo="logo_src" :app-name="app_name" />
+
   <RouterView />
 
 </template>
