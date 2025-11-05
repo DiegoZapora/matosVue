@@ -147,6 +147,8 @@ app.delete("/burguers/:id", async (req, res) => {
     }
 })
 
-app.listen(8085, () => {
+const PORT = process.env.PORT || 8085
+
+app.listen(PORT, () => {
     console.log("Estamos rodando!")
 })
