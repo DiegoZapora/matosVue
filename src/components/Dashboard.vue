@@ -39,7 +39,8 @@ export default {
     },
     methods: {
         async getBurguers() {
-            const API_URL = import.meta.env.VITE_API_URL || process.env.VUE_APP_API_URL
+            /*const API_URL = import.meta.env.VITE_API_URL || process.env.VUE_APP_API_URL*/
+            const API_URL = "https://matosvue-pgr5.onrender.com"
             try {
                 const res = await fetch(`${API_URL}/burguers`)
                 const data = await res.json()
