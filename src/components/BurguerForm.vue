@@ -50,7 +50,6 @@
 
 <script>
 import InputCad from './InputCad.vue';
-import SelectCad from './SelectCad.vue';
 import SubmitBtn from './SubmitBtn.vue';
 import Msg from './Msg.vue';
 
@@ -58,7 +57,6 @@ export default {
     name: "BurguerForm",
     components: {
         InputCad,
-        SelectCad,
         SubmitBtn,
         Msg
     },
