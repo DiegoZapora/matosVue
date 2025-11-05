@@ -155,7 +155,9 @@ export default {
     align-items: center;
     flex-direction: column;
     width: 400px;
+    min-height: 500px;
     height: auto;
+    max-height: 1400px;
     padding: 10px;
     border-radius: 10px;
 }

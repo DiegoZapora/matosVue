@@ -1,17 +1,14 @@
-// Imports
 import express from "express"
 import mongoose from "mongoose"
 import cors from "cors"
 import session from "express-session"
 
-
-// Models
 import { Paes } from "./Models/Ingredientes/Paes.js"
 import { Carnes } from "./Models/Ingredientes/Carnes.js"
 import { Queijo } from "./Models/Ingredientes/Queijo.js"
 import { Burguers } from "./Models/Ingredientes/Ingredientes.js"
 import { Adicional } from "./Models/Ingredientes/Adicionais.js"
-// Configurações
+
 const app = express()
 app.use(cors())
 app.use(express.json())
@@ -22,7 +19,6 @@ app.use(session({
     saveUninitialized: true,
 }))
 
-// Conexão com o db
 mongoose.connect("mongodb://localhost/makedb")
     .then(() => {
         console.log("Conectado ao MongoDB")
@@ -85,7 +81,6 @@ app.get("/ingredientes/todos", async (req, res) => {
     }
 })
 
-
 app.post("/burguers", async (req, res) => {
     try {
         const novoBurguer = new Burguers(req.body)
@@ -105,6 +100,43 @@ app.get("/burguers", async (req, res) => {
     }
 })
 
+app.patch("/burguers/:id", async (req, res) => {
+    try {
+        const id = req.params.id
+        const novoStatus = req.body.status
+
+        const statusValidos = ["Solicitado", "Em Produção", "Finalizado"]
+        if (!statusValidos.includes(novoStatus))  {
+            return res.status(400)
+        }
+
+        const pedidoAtualizado = await Burguers.findByIdAndUpdate(
+            id,
+            { status: novoStatus },
+            { new: true }
+        )
+
+        if (!pedidoAtualizado) {
+            return res.status(404)
+        }
+
+        res.status(200).json(pedidoAtualizado)
+
+        if (novoStatus === "Finalizado") {
+            setTimeout(async () => {
+                try {
+                    await Burguers.findByIdAndDelete(id)
+                } catch(err) {
+                    console.log("Erro ao excluir projeto", err)
+                }
+            }, 30000);
+        }
+
+    } catch(err) {
+        console.log(err)
+    }
+})
+
 app.delete("/burguers/:id", async (req, res) => {
     try {
         const id = req.params.id
@@ -115,7 +147,6 @@ app.delete("/burguers/:id", async (req, res) => {
     }
 })
 
-// Iniciar o servidor
 app.listen(8085, () => {
     console.log("Estamos rodando!")
 })

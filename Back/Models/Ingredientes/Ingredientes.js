@@ -17,6 +17,13 @@ const BurguerSchema = new Schema({
     },
     Adicional: {
         type: Array
+    },
+    status: {
+        type: String,
+        required: true,
+
+        enum: ["Solicitado", "Em Produção", "Finalizado"],
+        default: "Solicitado"
     }
 })
 

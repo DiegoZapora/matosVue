@@ -1,19 +1,21 @@
 <template>
     <div class="burguerContainer">
-        <Msg :mensagem="msg" v-if="msg"/>
+        <p v-if="burguers == false">Nenhum pedido cadastrado</p>
+        <Msg :mensagem="msg" v-if="msg" />
         <div class="burguerRows" v-for="burguer in burguers">
             <span>Nome: {{ burguer.nome }}</span>
             <span>Pão: {{ burguer.Paes }}</span>
             <span>Carne: {{ burguer.Carnes }}</span>
             <span>Queijo: {{ burguer.Queijo }}</span>
             <span>Adicionais: </span>
-            <ul v-for="adicional in burguer.Adicional">
-                <li>{{ adicional }}</li>
+            <ul>
+                <li v-for="(adicional, index) in burguer.Adicional" :key="index">{{ adicional }}</li>
             </ul>
             <span class="sas"></span>
             <div class="acoesBurguer">
-                <select name="status">
-                    <option :value="status.id" v-for="status in status" :key="status.id">{{ status.texto }}</option>
+                <select name="status" v-model="burguer.status"
+                    @change="atualizaStatus(burguer._id, $event.target.value)">
+                    <option :value="s" v-for="(s, index) in status" :key="index">{{ s }}</option>
                 </select>
                 <button class="btnCancelar" @click="deleteBurguer(burguer._id)">Cancelar Pedido</button>
             </div>
@@ -28,21 +30,8 @@ export default {
     data() {
         return {
             burguers: null,
-            status: [
-                {
-                    "id": 1,
-                    "texto": "Solitado"
-                },
-                {
-                    "id": 2,
-                    "texto": "Em Producão"
-                },
-                {
-                    "id": 3,
-                    "texto": "Finalizado"
-                }
-            ],
-            msg: null
+            msg: null,
+            status: ["Solicitado", "Em Produção", "Finalizado"]
         }
     },
     components: {
@@ -70,9 +59,42 @@ export default {
                 this.burguers = this.burguers.filter(burguer => burguer._id !== id)
 
                 this.msg = "Pedido deletado com sucesso!"
-            } catch(err) {
+                this.limpaMsg()
+            } catch (err) {
                 console.log(err)
             }
+        },
+
+        async atualizaStatus(id, novoStatus) {
+            try {
+                const res = await fetch(`http://localhost:8085/burguers/${id}`, {
+                    method: "PATCH",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ status: novoStatus })
+                })
+
+                if (!res.ok) {
+                    throw new Error(`Erro: ${res.status}`)
+                }
+
+                this.msg = `Status do pedido atualizado para ${novoStatus}`
+                this.limpaMsg()
+
+                if (novoStatus === "Finalizado") {
+                    setTimeout(() => {
+                        this.burguers = this.burguers.filter(burguer => burguer._id !== id)
+                    }, 30000);
+                }
+
+
+            } catch (err) {
+                console.log(err)
+            }
+        },
+        limpaMsg() {
+            setTimeout(() => {
+                this.msg = ""
+            }, 5000)
         }
     },
     mounted() {
@@ -101,6 +123,31 @@ export default {
     padding: 10px;
     border-radius: 10px;
     margin-bottom: 10px;
+    background-color: rgba(182, 112, 8, 0.774);
+    color: black;
+    font-weight: bold;
+}
+
+.burguerRows button {
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: black;
+    color: rgb(255, 154, 2);
+    font-weight: bold;
+    transition: .5s;
+}
+
+.burguerRows button:hover {
+    background-color: red;
+    color: white;
+}
+
+.burguerRows select {
+    background-color: black;
+    color: rgb(255, 153, 0);
+    font-weight: bold;
+    border: 1px solid black;
+    border-radius: 5px;
 }
 
 .burguerRows ul {
