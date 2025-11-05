@@ -79,13 +79,18 @@ export default {
     methods: {
         async getIngredientes() {
             const API_URL = import.meta.env.VITE_API_URL || process.env.VUE_APP_API_URL
-            const res = await fetch(`${API_URL}/ingredientes/todos`)
+            try {
+                const res = await fetch(`${API_URL}/ingredientes/todos`)
             const data = await res.json()
 
             this.opPao = data.paes
             this.opCarne = data.carnes
             this.opQueijo = data.queijos
             this.opAdicio = data.adicional
+            }catch(err) {
+                console.log(err)
+            }
+            
         },
 
         async MandaBurguer() {
