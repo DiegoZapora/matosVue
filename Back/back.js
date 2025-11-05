@@ -19,7 +19,7 @@ app.use(session({
     saveUninitialized: true,
 }))
 
-mongoose.connect("mongodb://localhost/makedb")
+mongoose.connect(process.env.MONGO_URL)
     .then(() => {
         console.log("Conectado ao MongoDB")
     })
