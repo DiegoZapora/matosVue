@@ -39,8 +39,9 @@ export default {
     },
     methods: {
         async getBurguers() {
+            const API_URL = import.meta.env.VITE_API_URL || process.env.VUE_APP_API_URL
             try {
-                const res = await fetch("http://localhost:8085/burguers")
+                const res = await fetch(`${API_URL}/burguers`)
                 const data = await res.json()
 
                 this.burguers = data;
@@ -51,8 +52,9 @@ export default {
         },
 
         async deleteBurguer(id) {
+            const API_URL = import.meta.env.VITE_API_URL || process.env.VUE_APP_API_URL
             try {
-                const res = await fetch(`http://localhost:8085/burguers/${id}`, {
+                const res = await fetch(`${API_URL}/burguers/${id}`, {
                     method: "DELETE"
                 })
 
@@ -66,8 +68,9 @@ export default {
         },
 
         async atualizaStatus(id, novoStatus) {
+            const API_URL = import.meta.env.VITE_API_URL || process.env.VUE_APP_API_URL
             try {
-                const res = await fetch(`http://localhost:8085/burguers/${id}`, {
+                const res = await fetch(`${API_URL}/burguers/${id}`, {
                     method: "PATCH",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ status: novoStatus })

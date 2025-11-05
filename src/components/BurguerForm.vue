@@ -80,7 +80,8 @@ export default {
 
     methods: {
         async getIngredientes() {
-            const res = await fetch("http://localhost:8085/ingredientes/todos")
+            const API_URL = import.meta.env.VITE_API_URL || process.env.VUE_APP_API_URL
+            const res = await fetch(`${API_URL}/ingredientes/todos`)
             const data = await res.json()
 
             this.opPao = data.paes
@@ -103,8 +104,9 @@ export default {
             } else if (this.pao === "" || this.carne === "" || this.queijo === "") {
                 this.msg = "Selecione os Ingredientes!"
             } else {
+                const API_URL = import.meta.env.VITE_API_URL || process.env.VUE_APP_API_URL
                 try {
-                    const res = await fetch("http://localhost:8085/burguers", {
+                    const res = await fetch(`${API_URL}/burguers`, {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify(novoBurguer)

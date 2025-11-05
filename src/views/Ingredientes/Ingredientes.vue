@@ -38,8 +38,9 @@ export default {
     },
     methods: {
         async buscaIngredientes() {
+            const API_URL = import.meta.env.VITE_API_URL || process.env.VUE_APP_API_URL
             try {
-                const res = await fetch("http://localhost:8085/ingredientes/todos")
+                const res = await fetch(`${API_URL}/ingredientes/todos`)
                 const data = await res.json()
 
                 this.paes = data.paes

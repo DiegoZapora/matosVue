@@ -10,7 +10,9 @@ import { Burguers } from "./Models/Ingredientes/Ingredientes.js"
 import { Adicional } from "./Models/Ingredientes/Adicionais.js"
 
 const app = express()
-app.use(cors())
+app.use(cors({
+    origin: "https://matosburguer.vercel.app"
+}))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(session({

@@ -25,9 +25,9 @@ export default {
             const novaCarne = {
                 nomeCarne: this.carne
             }
-
+            const API_URL = import.meta.env.VITE_API_URL || process.env.VUE_APP_API_URL
             try {
-                const res = await fetch("http://localhost:8085/cadastrar/carne", {
+                const res = await fetch(`${API_URL}/cadastrar/carne`, {
                     method: "POST",
                     headers: {"Content-Type": "application/json"},
                     body: JSON.stringify(novaCarne)

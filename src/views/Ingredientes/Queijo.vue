@@ -25,9 +25,9 @@ export default {
             const novoQueijo = {
                 nomeQueijo: this.queijo
             }
-
+            const API_URL = import.meta.env.VITE_API_URL || process.env.VUE_APP_API_URL
             try {
-                const res = await fetch("http://localhost:8085/cadastrar/queijo", {
+                const res = await fetch(`${API_URL}/cadastrar/queijo`, {
                     method: "POST",
                     headers: {"Content-Type": "application/json"},
                     body: JSON.stringify(novoQueijo)

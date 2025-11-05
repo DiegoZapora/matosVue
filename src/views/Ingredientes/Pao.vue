@@ -27,9 +27,9 @@ export default {
             const novoPao = {
                 tipoPao: this.pao
             }
-
+            const API_URL = import.meta.env.VITE_API_URL || process.env.VUE_APP_API_URL
             try {
-                const res = await fetch("http://localhost:8085/cadastrar/pao", {
+                const res = await fetch(`${API_URL}/cadastrar/pao`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(novoPao)
