@@ -1,7 +1,6 @@
 import express from "express"
 import mongoose from "mongoose"
 import cors from "cors"
-import session from "express-session"
 
 import { Paes } from "./Models/Ingredientes/Paes.js"
 import { Carnes } from "./Models/Ingredientes/Carnes.js"
@@ -13,11 +12,6 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
-app.use(session({
-    secret: "Andre Matos",
-    resave: false,
-    saveUninitialized: true,
-}))
 
 mongoose.connect(process.env.MONGO_URL)
     .then(() => {
