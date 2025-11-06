@@ -81,16 +81,16 @@ export default {
             const API_URL = import.meta.env.VITE_API_URL || process.env.VUE_APP_API_URL
             try {
                 const res = await fetch(`${API_URL}/ingredientes/todos`)
-            const data = await res.json()
+                const data = await res.json()
 
-            this.opPao = data.paes
-            this.opCarne = data.carnes
-            this.opQueijo = data.queijos
-            this.opAdicio = data.adicional
-            }catch(err) {
+                this.opPao = data.paes
+                this.opCarne = data.carnes
+                this.opQueijo = data.queijos
+                this.opAdicio = data.adicional
+            } catch (err) {
                 console.log(err)
             }
-            
+
         },
 
         async MandaBurguer() {
@@ -220,16 +220,16 @@ export default {
 
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 1s ease;
+    transition: opacity 1s ease;
 }
 
 .fade-enter-from,
 .fade-leave-to {
-  opacity: 0;
+    opacity: 0;
 }
 
 .fade-enter-to,
 .fade-leave-from {
-  opacity: 1;
+    opacity: 1;
 }
 </style>
